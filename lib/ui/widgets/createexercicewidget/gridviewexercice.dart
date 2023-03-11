@@ -44,12 +44,14 @@ class GridViewExercice extends StatelessWidget {
                         return WidgetExercice(
                           image: AssetImage("assets/images/${data['nom']}.png"),
                           idMuscle: int.parse(data['id']),
+                          type: data['type'],
                           getChoose: 0,
                         );
                       }
                       return WidgetExercice(
                         image: AssetImage("assets/images/${data['nom']}.png"),
                         idMuscle: int.parse(data['id']),
+                        type: data['type'],
                       );
                     }).toList(),
                   );

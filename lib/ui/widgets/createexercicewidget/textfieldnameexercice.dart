@@ -22,7 +22,7 @@ class TextFiledNameExercice extends StatelessWidget {
               decoration: CustomThemes.textFieldStyle,
               onChanged: (val) {
                 context.read<CreateExerciceBloc>().add(
-                    TitleExerciceChangeEvent(titleExercice: val,nameMuscle: state.nameMuscle));
+                    TitleExerciceChangeEvent(titleExercice: val,nameMuscle: state.nameMuscle,idMuscle: state.idMuscle,type: state.type));
               },
             );
           }

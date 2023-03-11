@@ -4,29 +4,34 @@ part of 'createexercice_bloc.dart';
 abstract class CreateExerciceEvent {
   String? titleExercice;
   String? nameMuscle;
-  CreateExerciceEvent({this.titleExercice,this.nameMuscle});
+  String? idMuscle;
+  String? type;
+  CreateExerciceEvent({this.titleExercice,this.nameMuscle,this.idMuscle,this.type});
 }
 class PectoreauxEvent extends CreateExerciceEvent{
-  PectoreauxEvent({titleExercice}):super(titleExercice: titleExercice);
+  PectoreauxEvent({titleExercice,idMuscle,type}):super(titleExercice: titleExercice,idMuscle: idMuscle,type: type);
 }
 class DosEvent extends CreateExerciceEvent{
-  DosEvent({titleExercice}):super(titleExercice: titleExercice);
+  DosEvent({titleExercice,idMuscle,type}):super(titleExercice: titleExercice,idMuscle: idMuscle,type: type);
 }
 class BicepsEvent extends CreateExerciceEvent{
-  BicepsEvent({titleExercice}):super(titleExercice: titleExercice);
+  BicepsEvent({titleExercice,idMuscle,type}):super(titleExercice: titleExercice,idMuscle: idMuscle,type: type);
 }
 class JambeEvent extends CreateExerciceEvent{
-  JambeEvent({titleExercice}):super(titleExercice: titleExercice);
+  JambeEvent({titleExercice,idMuscle,type}):super(titleExercice: titleExercice,idMuscle: idMuscle,type: type);
 }
 class TricepsEvent extends CreateExerciceEvent{
-  TricepsEvent({titleExercice}):super(titleExercice: titleExercice);
+  TricepsEvent({titleExercice,idMuscle,type}):super(titleExercice: titleExercice,idMuscle: idMuscle,type: type);
 }
 class AbdosEvent extends CreateExerciceEvent{
-  AbdosEvent({titleExercice}):super(titleExercice: titleExercice);
+  AbdosEvent({titleExercice,idMuscle,type}):super(titleExercice: titleExercice,idMuscle: idMuscle,type: type);
 }
 class EpauleEvent extends CreateExerciceEvent{
-  EpauleEvent({titleExercice}):super(titleExercice: titleExercice);
+  EpauleEvent({titleExercice,idMuscle,type}):super(titleExercice: titleExercice,idMuscle: idMuscle,type: type);
 }
 class TitleExerciceChangeEvent extends CreateExerciceEvent{
-  TitleExerciceChangeEvent({titleExercice,nameMuscle}):super(titleExercice: titleExercice,nameMuscle: nameMuscle);
+  TitleExerciceChangeEvent({titleExercice,nameMuscle,idMuscle,type}):super(titleExercice: titleExercice,nameMuscle: nameMuscle,idMuscle: idMuscle,type: type);
+}
+class CloseEvent extends CreateExerciceEvent{
+  CloseEvent({titleExercice,nameMuscle,idMuscle,type}):super(titleExercice: titleExercice,nameMuscle: nameMuscle,idMuscle: idMuscle,type: type);
 }

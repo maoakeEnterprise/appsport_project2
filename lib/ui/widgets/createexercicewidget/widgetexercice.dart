@@ -6,7 +6,8 @@ class WidgetExercice extends StatelessWidget {
   AssetImage? image;
   int? idMuscle;
   int? getChoose;
-  WidgetExercice({Key? key,this.image,this.getChoose,this.idMuscle}) : super(key: key);
+  String? type;
+  WidgetExercice({Key? key,this.image,this.getChoose,this.idMuscle,this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,61 +43,59 @@ class WidgetExercice extends StatelessWidget {
       ),
       onTap: (){
           if(idMuscle == 0){
-
             if(state.nameExercice != null){
-
-              context.read<CreateExerciceBloc>().add(BicepsEvent(titleExercice: state.nameExercice));
+              context.read<CreateExerciceBloc>().add(BicepsEvent(titleExercice: state.nameExercice,idMuscle: "$idMuscle",type: type));
             }
             else{
-              context.read<CreateExerciceBloc>().add(BicepsEvent());
+              context.read<CreateExerciceBloc>().add(BicepsEvent(idMuscle: "$idMuscle",type: type));
             }
           }
           if(idMuscle == 1){
             if(state.nameExercice != null){
-              context.read<CreateExerciceBloc>().add(AbdosEvent(titleExercice: state.nameExercice));
+              context.read<CreateExerciceBloc>().add(AbdosEvent(titleExercice: state.nameExercice,idMuscle: "$idMuscle",type: type));
             }
             else{
-              context.read<CreateExerciceBloc>().add(AbdosEvent());
+              context.read<CreateExerciceBloc>().add(AbdosEvent(idMuscle: "$idMuscle",type: type));
             }
           }
           if(idMuscle == 2){
             if(state.nameExercice != null){
-              context.read<CreateExerciceBloc>().add(JambeEvent(titleExercice: state.nameExercice));
+              context.read<CreateExerciceBloc>().add(JambeEvent(titleExercice: state.nameExercice,idMuscle: "$idMuscle",type: type));
             }
             else{
-              context.read<CreateExerciceBloc>().add(JambeEvent());
+              context.read<CreateExerciceBloc>().add(JambeEvent(idMuscle: "$idMuscle",type: type));
             }
           }
           if(idMuscle == 3){
             if(state.nameExercice != null){
-              context.read<CreateExerciceBloc>().add(EpauleEvent(titleExercice: state.nameExercice));
+              context.read<CreateExerciceBloc>().add(EpauleEvent(titleExercice: state.nameExercice,idMuscle: "$idMuscle",type: type));
             }
             else{
-              context.read<CreateExerciceBloc>().add(EpauleEvent());
+              context.read<CreateExerciceBloc>().add(EpauleEvent(idMuscle: "$idMuscle",type: type));
             }
           }
           if(idMuscle == 4){
             if(state.nameExercice != null){
-              context.read<CreateExerciceBloc>().add(DosEvent(titleExercice: state.nameExercice));
+              context.read<CreateExerciceBloc>().add(DosEvent(titleExercice: state.nameExercice,idMuscle: "$idMuscle",type: type));
             }
             else{
-              context.read<CreateExerciceBloc>().add(DosEvent());
+              context.read<CreateExerciceBloc>().add(DosEvent(idMuscle: "$idMuscle",type: type));
             }
           }
           if(idMuscle == 5){
             if(state.nameExercice != null){
-              context.read<CreateExerciceBloc>().add(TricepsEvent(titleExercice: state.nameExercice));
+              context.read<CreateExerciceBloc>().add(TricepsEvent(titleExercice: state.nameExercice,idMuscle: "$idMuscle",type: type));
             }
             else{
-              context.read<CreateExerciceBloc>().add(TricepsEvent());
+              context.read<CreateExerciceBloc>().add(TricepsEvent(idMuscle: "$idMuscle",type: type));
             }
           }
           if(idMuscle == 6){
             if(state.nameExercice != null){
-              context.read<CreateExerciceBloc>().add(PectoreauxEvent(titleExercice: state.nameExercice));
+              context.read<CreateExerciceBloc>().add(PectoreauxEvent(titleExercice: state.nameExercice,idMuscle: "$idMuscle",type: type));
             }
             else{
-              context.read<CreateExerciceBloc>().add(PectoreauxEvent());
+              context.read<CreateExerciceBloc>().add(PectoreauxEvent(idMuscle: "$idMuscle",type: type));
             }
           }
       },

@@ -5,18 +5,20 @@ abstract class CreateExerciceState {
   String? nameMuscle;
   String? errorMessage;
   String? nameExercice;
-  CreateExerciceState({this.nameMuscle,this.errorMessage,this.nameExercice});
+  String? idMuscle;
+  String? type;
+  CreateExerciceState({this.nameMuscle,this.errorMessage,this.nameExercice,this.idMuscle,this.type});
 }
 
 class CreateExerciceInitial extends CreateExerciceState {
   CreateExerciceInitial({nameMuscle}):super(nameMuscle: nameMuscle);
 }
 class SelectedMuscleState extends CreateExerciceState{
-  SelectedMuscleState({nameMuscle,nameExercice}):super(nameMuscle: nameMuscle,nameExercice: nameExercice);
+  SelectedMuscleState({nameMuscle,nameExercice,idMuscle,type}):super(nameMuscle: nameMuscle,nameExercice: nameExercice,idMuscle: idMuscle,type: type);
 }
 class ErrorMuscleState extends CreateExerciceState{
   ErrorMuscleState({nameMuscle,errorMessage}):super(nameMuscle: nameMuscle, errorMessage: errorMessage);
 }
 class ValidateExerciceState extends CreateExerciceState{
-  ValidateExerciceState({nameMuscle,nameExercice}):super(nameMuscle: nameMuscle,nameExercice: nameExercice);
+  ValidateExerciceState({nameMuscle,nameExercice,idMuscle,type}):super(nameMuscle: nameMuscle,nameExercice: nameExercice,idMuscle: idMuscle,type: type);
 }

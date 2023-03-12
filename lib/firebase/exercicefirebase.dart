@@ -38,10 +38,20 @@ class ExerciceFirebase extends StatelessWidget {
                       print(state.valSearching);
                       if(data['idUser'] == user.uid){
                         if(state.type != null){
-                          return CaseWidgetExercice(nom: data['nom'],nomMuscle: data['nomMuscle'],);
+                          return CaseWidgetExercice(
+                            nom: data['nom'],
+                            id: data['id'],
+                            idMuscle: data['idmuscle'],
+                            nomMuscle: data['nomMuscle'],
+                            type: data['type'],);
                         }
                         else if(state.valSearching != null && data['nom'].toString().toLowerCase().startsWith(state.valSearching!.toLowerCase())){
-                          return CaseWidgetExercice(nom: data['nom'],nomMuscle: data['nomMuscle'],);
+                          return CaseWidgetExercice(
+                            nom: data['nom'],
+                            id: data['id'],
+                            idMuscle: data['idmuscle'],
+                            nomMuscle: data['nomMuscle'],
+                            type: data['type'],);
                         }
                       }
                       return Container();
@@ -68,7 +78,12 @@ class ExerciceFirebase extends StatelessWidget {
                       Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
                       if(data['idUser'] == user.uid){
-                        return CaseWidgetExercice(nom: data['nom'],nomMuscle: data['nomMuscle'],);
+                        return CaseWidgetExercice(
+                          nom: data['nom'],
+                          id: data['id'],
+                          idMuscle: data['idmuscle'],
+                          nomMuscle: data['nomMuscle'],
+                          type: data['type'],);
                       }
                       return Container();
                     }).toList(),

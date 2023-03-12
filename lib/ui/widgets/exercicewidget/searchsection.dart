@@ -30,7 +30,7 @@ class SearchSectionWidget extends StatelessWidget {
           InkWell(
             borderRadius: BorderRadius.circular(15),
             onTap: (){
-              context.read<ExerciceBloc>().add(SearchExoEvent(name));
+              context.read<ExerciceBloc>().add(SearchExoEvent(val: name));
             },
             child: Container(
               padding: const EdgeInsets.all(20),

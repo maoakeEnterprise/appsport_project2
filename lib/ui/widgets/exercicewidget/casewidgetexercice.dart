@@ -1,13 +1,18 @@
 import 'dart:math';
 
+import 'package:appsport_project/bloc/exercicebloc/exercice_bloc.dart';
 import 'package:appsport_project/ui/themes/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CaseWidgetExercice extends StatelessWidget {
   String? nom;
   String? nomMuscle;
+  String? idMuscle;
+  String? id;
+  String? type;
 
-  CaseWidgetExercice({Key? key,this.nom,this.nomMuscle}) : super(key: key);
+  CaseWidgetExercice({Key? key,this.nom,this.nomMuscle,this.id,this.idMuscle,this.type}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +52,9 @@ class CaseWidgetExercice extends StatelessWidget {
                   ),
                   onTap: (){
 
+                    String routeNameNewExercice = 'nouveauexercice';
+                    context.read<ExerciceBloc>().add(SearchExoEvent(val: ""));
+                    Navigator.pushNamed(context, routeNameNewExercice,arguments: {'nomMuscle': nomMuscle,'id':id,'nom':nom,'type':type,'idMuscle':idMuscle});
                   },
                 )
               ],

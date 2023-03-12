@@ -35,3 +35,5 @@ class TitleExerciceChangeEvent extends CreateExerciceEvent{
 class CloseEvent extends CreateExerciceEvent{
   CloseEvent({titleExercice,nameMuscle,idMuscle,type}):super(titleExercice: titleExercice,nameMuscle: nameMuscle,idMuscle: idMuscle,type: type);
 }
+class RebootCreateExerciceEvent extends CreateExerciceEvent{}
+

@@ -5,7 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../themes/themes.dart';
 
 class TextFiledNameExercice extends StatelessWidget {
-  const TextFiledNameExercice({Key? key}) : super(key: key);
+  String? nom;
+  String? nameMuscle;
+  String? idMuscle;
+  String? type;
+  TextFiledNameExercice({Key? key,this.nom,this.nameMuscle,this.idMuscle,this.type}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +23,23 @@ class TextFiledNameExercice extends StatelessWidget {
       ),
       child: BlocBuilder<CreateExerciceBloc, CreateExerciceState>(
         builder: (context, state) {
+          if(nom != null){
+            TextEditingController controller = TextEditingController();
+            controller.text = nom!;
+            if(state.nameMuscle == null){
+              context.read<CreateExerciceBloc>().add(
+                  TitleExerciceChangeEvent(titleExercice: nom,nameMuscle: nameMuscle,idMuscle: idMuscle,type: type));
+            }
+            return TextField(
+              decoration: CustomThemes.textFieldStyle,
+              controller: controller,
+              onChanged: (val) {
+                nom = null;
+                context.read<CreateExerciceBloc>().add(
+                    TitleExerciceChangeEvent(titleExercice: val,nameMuscle: state.nameMuscle,idMuscle: state.idMuscle,type: state.type));
+                },
+            );
+          }
           if(state.nameMuscle != null){
             return TextField(
               decoration: CustomThemes.textFieldStyle,

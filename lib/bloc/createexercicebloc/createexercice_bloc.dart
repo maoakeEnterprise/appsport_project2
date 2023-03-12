@@ -77,5 +77,9 @@ class CreateExerciceBloc extends Bloc<CreateExerciceEvent, CreateExerciceState> 
       // TODO: implement event handler
       emit(ValidateExerciceState());
     });
+    on<RebootCreateExerciceEvent>((event, emit) {
+      // TODO: implement event handler
+      emit(SelectedMuscleState());
+    });
   }
 }

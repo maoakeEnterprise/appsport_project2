@@ -1,5 +1,8 @@
+import 'package:appsport_project/bloc/exercicebloc/exercice_bloc.dart';
 import 'package:appsport_project/firebase/exercicefirebase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../bloc/createexercicebloc/createexercice_bloc.dart';
 import '../widgets/exercicewidget/rowboutonsection.dart';
 import '../widgets/exercicewidget/searchsection.dart';
 
@@ -41,7 +44,9 @@ class ExercicesPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           String routeNameNewExercice = 'nouveauexercice';
-          Navigator.pushNamed(context, routeNameNewExercice);
+          context.read<ExerciceBloc>().add(SearchExoEvent(val: ""));
+          context.read<CreateExerciceBloc>().add(CloseEvent());
+          Navigator.pushNamed(context, routeNameNewExercice,);
         },
         child: const Icon(Icons.add),
       ),

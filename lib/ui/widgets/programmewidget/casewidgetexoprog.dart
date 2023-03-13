@@ -3,7 +3,14 @@ import 'package:appsport_project/ui/themes/themes.dart';
 import 'package:flutter/material.dart';
 
 class CaseWidgetExoProg extends StatelessWidget {
-  const CaseWidgetExoProg({Key? key}) : super(key: key);
+  String? idProgramme;
+  String? id;
+  String? idExercice;
+  String? nomExerice;
+  String? nomMuscle;
+  String? poids;
+  String? repetitions;
+  CaseWidgetExoProg({Key? key,this.idProgramme,this.id,this.idExercice,this.nomExerice,this.nomMuscle,this.poids,this.repetitions}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +28,7 @@ class CaseWidgetExoProg extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(margin: const EdgeInsets.only(top: 40),child: Text("Nom Exo",style: CustomThemes.widgetName,)),
+              Container(margin: const EdgeInsets.only(top: 40),child: Text(nomExerice!,style: CustomThemes.widgetName,)),
               Column(
                 children: [
                   Container(
@@ -32,7 +39,7 @@ class CaseWidgetExoProg extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(13)
                     ),
-                    child: Text("57 KG",style: CustomThemes.descriptifTitle,textAlign: TextAlign.center,),
+                    child: Text("$poids KG",style: CustomThemes.descriptifTitle,textAlign: TextAlign.center,),
                   ),
                   const SizedBox(height: 20,),
                   Container(
@@ -43,7 +50,7 @@ class CaseWidgetExoProg extends StatelessWidget {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(13)
                     ),
-                    child: Text("10 Rep",style: CustomThemes.descriptifTitle,textAlign: TextAlign.center),
+                    child: Text("$repetitions Rep",style: CustomThemes.descriptifTitle,textAlign: TextAlign.center),
                   ),
                 ],
               )
@@ -52,7 +59,7 @@ class CaseWidgetExoProg extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Image(image: AssetImage("assets/images/biceps.png"),width: 100,height: 100,),
+              Image(image: AssetImage("assets/images/$nomMuscle.png"),width: 100,height: 100,),
               InkWell(
                 borderRadius: BorderRadius.circular(15),
                 child: Container(
@@ -67,7 +74,7 @@ class CaseWidgetExoProg extends StatelessWidget {
                   child: const Image(image: AssetImage("assets/images/stylo.png"),),
                 ),
                 onTap: (){
-                  Navigator.pushNamed(context, "exoprogramme");
+                  Navigator.pushNamed(context, "exoprogramme",arguments: {'id':id,'idExercice':idExercice,'idProgramme':idProgramme});
                 },
               )
             ],

@@ -138,6 +138,7 @@ class CreateExercice extends StatelessWidget {
                             .doc(value.id)
                             .update({"id": value.id}));
                     context.read<CreateExerciceBloc>().add(CloseEvent());
+                    FocusScope.of(context).unfocus();
                     Navigator.pop(context);
                   },
                 );

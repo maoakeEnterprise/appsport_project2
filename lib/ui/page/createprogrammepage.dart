@@ -1,14 +1,22 @@
+import 'package:appsport_project/firebase/programmeexercicefirebase.dart';
 import 'package:appsport_project/ui/themes/themes.dart';
-import 'package:appsport_project/ui/widgets/programmewidget/casewidgetexoprog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/programmewidget/textfilednomprogramme.dart';
 
 class CreateProgrammePage extends StatelessWidget {
-  const CreateProgrammePage({Key? key}) : super(key: key);
+  CreateProgrammePage({Key? key}) : super(key: key);
+
+  var db = FirebaseFirestore.instance;
+
+  final user = FirebaseAuth.instance.currentUser!;
 
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Programme"),
@@ -17,14 +25,9 @@ class CreateProgrammePage extends StatelessWidget {
       body: Column(
         children: [
           const TextFieldNomProgramme(),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 4,
-                itemBuilder: (context,index){
-                return const CaseWidgetExoProg();
-            }
-            ),
-          ),
+          //LIST DES EXO DANS LE PROGRAMME
+          ProgrammeExerciceFirebase(id: arguments['id'],),
+          //BOUTON VALIDER
           InkWell(
             borderRadius: BorderRadius.circular(50),
             child: Container(
@@ -40,6 +43,16 @@ class CreateProgrammePage extends StatelessWidget {
             onTap: (){},
           )
         ],
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 80),
+        child: FloatingActionButton(
+          onPressed: (){
+            String routeName = "exoprogramme";
+            Navigator.pushNamed(context, routeName,arguments: {'id':arguments['id']});
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

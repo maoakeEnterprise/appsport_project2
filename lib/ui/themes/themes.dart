@@ -31,6 +31,26 @@ class CustomThemes{
         borderRadius: BorderRadius.circular(50)
     ),
   );
+  static InputDecoration textFieldStyle3 = InputDecoration(
+    hintText: "Poids",
+    labelText: "Poids",
+    hintStyle: const TextStyle(color: Colors.grey,fontSize: 15),
+    filled: false,
+    border: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(50)
+    ),
+  );
+  static InputDecoration textFieldStyle4 = InputDecoration(
+    hintText: "Repetitions",
+    labelText: "Repetitions",
+    hintStyle: const TextStyle(color: Colors.grey,fontSize: 15),
+    filled: false,
+    border: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(50)
+    ),
+  );
 
   static ThemeData themeData = ThemeData(
     appBarTheme: const AppBarTheme(

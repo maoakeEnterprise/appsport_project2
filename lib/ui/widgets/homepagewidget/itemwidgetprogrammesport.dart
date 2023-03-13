@@ -1,20 +1,25 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../../themes/themes.dart';
 
 class ItemWidgetTrainings extends StatelessWidget {
-  Color? color;
-  ItemWidgetTrainings({Key? key, this.color}) : super(key: key);
+  String? nomProgramme;
+  String? id;
+  ItemWidgetTrainings({Key? key,this.nomProgramme,this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Color> tabColors = [Colors.redAccent,Colors.blueAccent,Colors.greenAccent,Colors.purpleAccent,Colors.amberAccent,Colors.pinkAccent];
+    int randomNumberColor = Random().nextInt(5);
     return Padding(
       padding: const EdgeInsets.all(30.0),
       child: Container(
         height: 250,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: color!.withAlpha(60),
+          color: tabColors[randomNumberColor].withAlpha(60),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -26,9 +31,9 @@ class ItemWidgetTrainings extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: 200,
-                      child: Text("NOM DU PROGRAMME",style: CustomThemes.widgetName,)),
+                      child: Text(nomProgramme!,style: CustomThemes.widgetName,)),
                   const Expanded(child: SizedBox()),
-                  const Image(image: AssetImage("assets/images/biceps.png"), width: 80,height: 80,)
+                  const Image(image: AssetImage("assets/images/sport.png"), width: 80,height: 80,)
 
                 ],
               ),
@@ -73,7 +78,7 @@ class ItemWidgetTrainings extends StatelessWidget {
                       child: const Image(image: AssetImage("assets/images/stylo.png"),),
                     ),
                     onTap: (){
-                      Navigator.pushNamed(context, "programmepage");
+                      Navigator.pushNamed(context, "programmepage",arguments: {'id':id,'nom':nomProgramme});
                     },
                   )
                 ],

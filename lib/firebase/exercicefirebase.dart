@@ -27,7 +27,7 @@ class ExerciceFirebase extends StatelessWidget {
                     return const Text("ERROR");
                   }
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Text("Loading");
+                    return const CircularProgressIndicator();
                   }
 
                   return ListView(

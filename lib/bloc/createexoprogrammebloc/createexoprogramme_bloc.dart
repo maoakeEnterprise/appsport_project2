@@ -13,7 +13,7 @@ class CreateExoProgrammeBloc extends Bloc<CreateExoProgrammeEvent, CreateExoProg
     });
     on<RadioListOptionEvent>((event, emit) {
       // TODO: implement event handler
-      emit(OptionState(exerciceOption: event.exerciceOption));
+      emit(OptionState(exerciceOption: event.exerciceOption,poids: event.poids,repetitions: event.repetitions));
     });
   }
 }

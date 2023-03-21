@@ -34,7 +34,18 @@ class ListRadioExercice extends StatelessWidget {
                            value: data['nom'],
                            groupValue: state.exerciceOption,
                            onChanged: (val) {
-                             context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val));
+                             if(state.poids != null && state.poids != "" && state.repetitions != null && state.repetitions != ""){
+                             context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,repetitions: state.repetitions));
+                             }
+                             else if(state.poids != null && state.poids != ""){
+                               context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids));
+                             }
+                             else if(state.repetitions != null && state.repetitions != ""){
+                               context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,repetitions: state.repetitions));
+                             }
+                             else{
+                               context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val));
+                             }
                            });
                      }).toList(),
                    );

@@ -1,6 +1,10 @@
 
+import 'dart:math';
+
+import 'package:appsport_project/bloc/createexoprogrammebloc/createexoprogramme_bloc.dart';
 import 'package:appsport_project/ui/themes/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CaseWidgetExoProg extends StatelessWidget {
   String? idProgramme;
@@ -14,12 +18,14 @@ class CaseWidgetExoProg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Color> tabColors = [Colors.redAccent,Colors.blueAccent,Colors.greenAccent,Colors.purpleAccent,Colors.amberAccent,Colors.pinkAccent];
+    int randomNumberColor = Random().nextInt(5);
     return Container(
-      height: 250,
+      //height: 250,
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(30),
       decoration: BoxDecoration(
-        color: Colors.redAccent.withAlpha(30),
+        color: tabColors[randomNumberColor].withAlpha(30),
         borderRadius: BorderRadius.circular(50)
       ),
       child: Row(
@@ -28,11 +34,16 @@ class CaseWidgetExoProg extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(margin: const EdgeInsets.only(top: 40),child: Text(nomExerice!,style: CustomThemes.widgetName,)),
+              Container(
+                  margin: const EdgeInsets.only(top: 40),
+                  width: 150,
+                  height: 90,
+                  child: Text(nomExerice!,style: CustomThemes.widgetName,),
+              ),
               Column(
                 children: [
                   Container(
-                    width: 120,
+                    width: 150,
                     height: 40,
                     padding: const EdgeInsets.all(7),
                     decoration: BoxDecoration(
@@ -60,6 +71,7 @@ class CaseWidgetExoProg extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image(image: AssetImage("assets/images/$nomMuscle.png"),width: 100,height: 100,),
+              const SizedBox(height: 20,),
               InkWell(
                 borderRadius: BorderRadius.circular(15),
                 child: Container(
@@ -74,7 +86,20 @@ class CaseWidgetExoProg extends StatelessWidget {
                   child: const Image(image: AssetImage("assets/images/stylo.png"),),
                 ),
                 onTap: (){
-                  Navigator.pushNamed(context, "exoprogramme",arguments: {'id':id,'idExercice':idExercice,'idProgramme':idProgramme});
+                  print(idProgramme);
+                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: poids, repetitions: repetitions, exerciceOption: nomExerice));
+                  Navigator.pushNamed(
+                      context,
+                      "exoprogramme",
+                      arguments: {
+                        'id':id,
+                        'idExercice':idExercice,
+                        'idProgramme':idProgramme,
+                        'nomExercice' : nomExerice,
+                        'poids' : poids,
+                        'repetitions' : repetitions,
+                        'cas':'UPDATE'}
+                  );
                 },
               )
             ],

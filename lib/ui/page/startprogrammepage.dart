@@ -1,5 +1,7 @@
 import 'package:appsport_project/ui/themes/themes.dart';
-import 'package:appsport_project/ui/widgets/startprogrammewidget/casewidgetstartprog.dart';
+import 'package:appsport_project/ui/widgets/startprogrammewidget/widgetcheckbox.dart';
+import 'package:appsport_project/ui/widgets/startprogrammewidget/widgettile.dart';
+import 'package:appsport_project/ui/widgets/startprogrammewidget/widgetvalidatebutton.dart';
 import 'package:flutter/material.dart';
 
 class StartProgrammePage extends StatelessWidget {
@@ -7,35 +9,18 @@ class StartProgrammePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Nom Prog"),
+        title: Text(arguments['nom']),
       ),
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          Expanded(
-            child: ListView.builder(
-                itemCount: 4,
-                itemBuilder: (context,index){
-                  return const CaseWidgetStartProg();
-                }
-            ),
-          ),
-          InkWell(
-            borderRadius: BorderRadius.circular(50),
-            child: Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(20),
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Colors.grey.withAlpha(50),
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Text("Valider", style: CustomThemes.widgetName,textAlign: TextAlign.center,),
-            ),
-            onTap: (){},
-          )
+          WidgetTile(),
+          //WidgetCheckbox(),
+          WidgetValidateButton(),
         ],
       ),
     );

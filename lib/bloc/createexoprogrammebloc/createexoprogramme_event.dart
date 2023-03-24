@@ -5,10 +5,11 @@ abstract class CreateExoProgrammeEvent {
   String? exerciceOption;
   String? poids;
   String? repetitions;
-  CreateExoProgrammeEvent({this.exerciceOption,this.poids,this.repetitions});
+  String? nomMuscle;
+  CreateExoProgrammeEvent({this.exerciceOption,this.poids,this.repetitions,this.nomMuscle});
 }
 
 class RadioListOptionEvent extends CreateExoProgrammeEvent{
-  RadioListOptionEvent({exerciceOption,poids,repetitions}):super(exerciceOption: exerciceOption,poids: poids,repetitions: repetitions);
+  RadioListOptionEvent({exerciceOption,poids,repetitions,nomMuscle}):super(exerciceOption: exerciceOption,poids: poids,repetitions: repetitions,nomMuscle: nomMuscle);
 }
 

@@ -26,15 +26,14 @@ class TextFiledNameExercice extends StatelessWidget {
           if(nom != null){
             TextEditingController controller = TextEditingController();
             controller.text = nom!;
-            if(state.nameMuscle == null){
-              context.read<CreateExerciceBloc>().add(
-                  TitleExerciceChangeEvent(titleExercice: nom,nameMuscle: nameMuscle,idMuscle: idMuscle,type: type));
-            }
+            context.read<CreateExerciceBloc>().add(
+                TitleExerciceChangeEvent(titleExercice: nom,nameMuscle: nameMuscle,idMuscle: idMuscle,type: type));
+            nom = null;
             return TextField(
               decoration: CustomThemes.textFieldStyle,
               controller: controller,
               onChanged: (val) {
-                nom = null;
+
                 context.read<CreateExerciceBloc>().add(
                     TitleExerciceChangeEvent(titleExercice: val,nameMuscle: state.nameMuscle,idMuscle: state.idMuscle,type: state.type));
                 },

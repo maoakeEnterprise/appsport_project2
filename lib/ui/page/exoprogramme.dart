@@ -13,6 +13,22 @@ class ExoProgramme extends StatelessWidget {
   Widget build(BuildContext context) {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
+    if(arguments['poids'] != null && arguments['repetitions'] != null){
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text("Exo Prog"),
+        ),
+        backgroundColor: Colors.white,
+        body: Column(
+          children: [
+            TextFieldPoidsWidget(poids: arguments['poids'],),
+            TextFieldRepetitionWidget(repetitions: arguments['repetitions'],),
+            ListRadioExercice(nomExercice: arguments['nomExercice'],),
+            BoutonValiderWidget(cas: arguments['cas'],idProgramme: arguments['idProgramme'],idExerciceProgramme: arguments['id'])
+          ],
+        ),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text("Exo Prog"),
@@ -23,7 +39,7 @@ class ExoProgramme extends StatelessWidget {
           TextFieldPoidsWidget(),
           TextFieldRepetitionWidget(),
           ListRadioExercice(),
-          BoutonValiderWidget()
+          BoutonValiderWidget(cas: arguments['cas'],idProgramme: arguments['idProgramme'],idExerciceProgramme: arguments['id'],)
         ],
       ),
     );

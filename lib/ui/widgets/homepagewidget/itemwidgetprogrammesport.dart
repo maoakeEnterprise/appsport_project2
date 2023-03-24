@@ -62,7 +62,7 @@ class ItemWidgetTrainings extends StatelessWidget {
                       ),
                     ),
                     onTap: (){
-                      Navigator.pushNamed(context, "startprogramme");
+                      Navigator.pushNamed(context, "startprogramme",arguments: {'idProgramme': id,'nom':nomProgramme});
                     },
                   ),
                   InkWell(

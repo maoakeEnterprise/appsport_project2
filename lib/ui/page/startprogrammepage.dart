@@ -16,12 +16,13 @@ class StartProgrammePage extends StatelessWidget {
         title: Text(arguments['nom']),
       ),
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          WidgetTile(),
-          //WidgetCheckbox(),
-          WidgetValidateButton(),
-        ],
+      body: Container(
+        margin: const EdgeInsets.only(left: 10,right: 10,top: 20),
+        child: Column(
+          children: [
+            WidgetCheckbox(idProgramme: arguments['idProgramme'],),
+          ],
+        ),
       ),
     );
   }

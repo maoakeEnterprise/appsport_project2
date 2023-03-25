@@ -2,6 +2,7 @@ import 'package:appsport_project/bloc/createexercicebloc/createexercice_bloc.dar
 import 'package:appsport_project/bloc/createexoprogrammebloc/createexoprogramme_bloc.dart';
 import 'package:appsport_project/bloc/exercicebloc/exercice_bloc.dart';
 import 'package:appsport_project/bloc/programmebloc/programme_bloc.dart';
+import 'package:appsport_project/bloc/startprogrammebloc/startprogramme_bloc.dart';
 import 'package:appsport_project/ui/page/rootview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context)=>ExerciceBloc()),
           BlocProvider(create: (context)=>CreateExerciceBloc()),
           BlocProvider(create: (context)=>CreateExoProgrammeBloc()),
-          BlocProvider(create: (context)=>ProgrammeBloc())
+          BlocProvider(create: (context)=>ProgrammeBloc()),
+          BlocProvider(create: (context)=>StartProgrammeBloc())
         ],
     child: const RootView());
   }

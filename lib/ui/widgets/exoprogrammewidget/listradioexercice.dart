@@ -5,7 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ListRadioExercice extends StatelessWidget {
   String? nomExercice;
-  ListRadioExercice({Key? key,this.nomExercice}) : super(key: key);
+  String? idUser;
+  ListRadioExercice({Key? key,this.nomExercice,this.idUser}) : super(key: key);
   var db = FirebaseFirestore.instance;
   String currentOptions = "";
 
@@ -36,24 +37,27 @@ class ListRadioExercice extends StatelessWidget {
                        Map<String, dynamic> data =
                        document.data()! as Map<String, dynamic>;
                        map.addAll({data['nom']:data['nomMuscle']});
-                       return RadioListTile(
-                           title: Text('${data['nom']}'),
-                           value: data['nom'],
-                           groupValue: state.exerciceOption,
-                           onChanged: (val) {
-                             if(state.poids != null && state.poids != "" && state.repetitions != null && state.repetitions != ""){
-                             context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,repetitions: state.repetitions,nomMuscle: map[val]));
-                             }
-                             else if(state.poids != null && state.poids != ""){
-                               context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,nomMuscle: map[val]));
-                             }
-                             else if(state.repetitions != null && state.repetitions != ""){
-                               context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,repetitions: state.repetitions,nomMuscle: map[val]));
-                             }
-                             else{
-                               context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,nomMuscle: map[val]));
-                             }
-                           });
+                       if(data['idUser'] == idUser){
+                         return RadioListTile(
+                             title: Text('${data['nom']}'),
+                             value: data['nom'],
+                             groupValue: state.exerciceOption,
+                             onChanged: (val) {
+                               if(state.poids != null && state.poids != "" && state.repetitions != null && state.repetitions != ""){
+                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,repetitions: state.repetitions,nomMuscle: map[val]));
+                               }
+                               else if(state.poids != null && state.poids != ""){
+                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,nomMuscle: map[val]));
+                               }
+                               else if(state.repetitions != null && state.repetitions != ""){
+                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,repetitions: state.repetitions,nomMuscle: map[val]));
+                               }
+                               else{
+                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,nomMuscle: map[val]));
+                               }
+                             });
+                       }else{return Container();}
+
                      }).toList(),
                    );
                  }
@@ -62,13 +66,16 @@ class ListRadioExercice extends StatelessWidget {
                     snapshot.data!.docs.map((DocumentSnapshot document) {
                       Map<String, dynamic> data =
                       document.data()! as Map<String, dynamic>;
-                      return RadioListTile(
-                          title: Text('${data['nom']}'),
-                          value: data['nom'],
-                          groupValue: currentOptions,
-                          onChanged: (val) {
-                            context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val));
-                          });
+                      if(data['idUser'] == idUser){
+                        return RadioListTile(
+                            title: Text('${data['nom']}'),
+                            value: data['nom'],
+                            groupValue: currentOptions,
+                            onChanged: (val) {
+                              context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val));
+                            });
+                      }
+                      else{return Container();}
                     }).toList(),
                   );
                 },

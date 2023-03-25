@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:appsport_project/bloc/startprogrammebloc/startprogramme_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../themes/themes.dart';
 
@@ -62,6 +64,7 @@ class ItemWidgetTrainings extends StatelessWidget {
                       ),
                     ),
                     onTap: (){
+                      context.read<StartProgrammeBloc>().add(InitBoxGetCheckedEvent());
                       Navigator.pushNamed(context, "startprogramme",arguments: {'idProgramme': id,'nom':nomProgramme});
                     },
                   ),

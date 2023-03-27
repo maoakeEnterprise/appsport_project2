@@ -145,6 +145,7 @@ class WidgetTile extends StatelessWidget {
         }
       }
       if(counter == 0){
+        print("test");
         dbDataSuivie.collection('datasuivie').add(data);
       }
     });

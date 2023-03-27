@@ -1,7 +1,6 @@
 import 'package:appsport_project/ui/themes/themes.dart';
 import 'package:appsport_project/ui/widgets/startprogrammewidget/widgetcheckbox.dart';
 import 'package:appsport_project/ui/widgets/startprogrammewidget/widgettile.dart';
-import 'package:appsport_project/ui/widgets/startprogrammewidget/widgetvalidatebutton.dart';
 import 'package:flutter/material.dart';
 
 class StartProgrammePage extends StatelessWidget {

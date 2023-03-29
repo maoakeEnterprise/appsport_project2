@@ -40,7 +40,7 @@ class ExoProgramme extends StatelessWidget {
         children: [
           TextFieldPoidsWidget(),
           TextFieldRepetitionWidget(),
-          ListRadioExercice(),
+          ListRadioExercice(idUser: user.uid,),
           BoutonValiderWidget(cas: arguments['cas'],idProgramme: arguments['idProgramme'],idExerciceProgramme: arguments['id'],)
         ],
       ),

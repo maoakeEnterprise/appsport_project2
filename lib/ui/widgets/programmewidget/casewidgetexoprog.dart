@@ -3,12 +3,13 @@ import 'dart:math';
 
 import 'package:appsport_project/bloc/createexoprogrammebloc/createexoprogramme_bloc.dart';
 import 'package:appsport_project/ui/themes/themes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CaseWidgetExoProg extends StatelessWidget {
   String? idProgramme;
-  String? id;
+  int? id;
   String? idExercice;
   String? nomExerice;
   String? nomMuscle;
@@ -86,7 +87,6 @@ class CaseWidgetExoProg extends StatelessWidget {
                   child: const Image(image: AssetImage("assets/images/stylo.png"),),
                 ),
                 onTap: (){
-                  print(idProgramme);
                   context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: poids, repetitions: repetitions, exerciceOption: nomExerice));
                   Navigator.pushNamed(
                       context,
@@ -100,6 +100,53 @@ class CaseWidgetExoProg extends StatelessWidget {
                         'repetitions' : repetitions,
                         'cas':'UPDATE'}
                   );
+                },
+              ),
+              const SizedBox(height: 10,),
+              InkWell(
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  padding: const EdgeInsets.only(top: 10),
+                  child: const Icon(
+                    Icons.maximize_rounded,
+                    color: Colors.red,
+                  ),
+                ),
+                onTap: (){
+                  showDialog(context: context,
+                      builder: (context) => SimpleDialog(
+                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                        contentPadding: const EdgeInsets.all(20),
+                        title: Text('Programme à supprimer'),
+                        children: [
+                          const Text("Veux-tu vraiment supprimer ?"),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              TextButton(
+                                  onPressed: (){
+                                    var db = FirebaseFirestore.instance;
+                                    db.collection("Programme").doc(idProgramme).collection("Exercices Programme").doc('$id').delete();
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text("Confirmer")
+                              ),
+                              const SizedBox(width: 40,),
+                              TextButton(
+                                  onPressed: (){
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text("Annuler")
+                              ),
+                            ],
+                          )
+                        ],
+                      ));
                 },
               )
             ],

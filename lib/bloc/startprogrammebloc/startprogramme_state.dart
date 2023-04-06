@@ -3,14 +3,15 @@ part of 'startprogramme_bloc.dart';
 @immutable
 abstract class StartProgrammeState {
   String? nomExercice;
-  StartProgrammeState({this.nomExercice});
+  String? id;
+  StartProgrammeState({this.nomExercice,this.id});
 }
 
 class StartProgrammeInitial extends StartProgrammeState {
 
 }
 class GetCheckedBoxState extends StartProgrammeState {
-  GetCheckedBoxState({nomExercice}):super(nomExercice: nomExercice);
+  GetCheckedBoxState({nomExercice,id}):super(nomExercice: nomExercice,id: id);
 }
 class InitCheckedBoxState extends StartProgrammeState {
 

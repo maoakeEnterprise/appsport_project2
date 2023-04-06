@@ -26,7 +26,7 @@ class ListRadioExercice extends StatelessWidget {
               return BlocBuilder<CreateExoProgrammeBloc, CreateExoProgrammeState>(
                 builder: (context, state) {
                   if(nomExercice != null){
-                    context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: nomExercice,poids: state.poids,repetitions: state.repetitions));
+                    context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: nomExercice,poids: state.poids,repetitions: state.repetitions,serie: state.serie));
                     nomExercice = null;
                   }
                  if(state is  OptionState){
@@ -43,17 +43,18 @@ class ListRadioExercice extends StatelessWidget {
                              value: data['nom'],
                              groupValue: state.exerciceOption,
                              onChanged: (val) {
+                               print('${state.serie}');
                                if(state.poids != null && state.poids != "" && state.repetitions != null && state.repetitions != ""){
-                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,repetitions: state.repetitions,nomMuscle: map[val]));
+                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,repetitions: state.repetitions,nomMuscle: map[val],serie: state.serie));
                                }
                                else if(state.poids != null && state.poids != ""){
-                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,nomMuscle: map[val]));
+                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,poids: state.poids,nomMuscle: map[val],serie: state.serie));
                                }
                                else if(state.repetitions != null && state.repetitions != ""){
-                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,repetitions: state.repetitions,nomMuscle: map[val]));
+                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,repetitions: state.repetitions,nomMuscle: map[val],serie: state.serie));
                                }
                                else{
-                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,nomMuscle: map[val]));
+                                 context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,nomMuscle: map[val],serie: state.serie));
                                }
                              });
                        }else{return Container();}
@@ -72,7 +73,7 @@ class ListRadioExercice extends StatelessWidget {
                             value: data['nom'],
                             groupValue: currentOptions,
                             onChanged: (val) {
-                              context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val));
+                              context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(exerciceOption: val,serie: state.serie));
                             });
                       }
                       else{return Container();}

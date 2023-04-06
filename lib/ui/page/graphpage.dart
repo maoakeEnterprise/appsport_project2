@@ -1,6 +1,7 @@
 import 'package:appsport_project/model/chart_data.dart';
 import 'package:appsport_project/ui/themes/themes.dart';
 import 'package:appsport_project/ui/widgets/graphwidget/graphwidget.dart';
+import 'package:appsport_project/ui/widgets/graphwidget/listradiowidget.dart';
 import 'package:appsport_project/ui/widgets/graphwidget/modulowidget.dart';
 import 'package:appsport_project/ui/widgets/graphwidget/tickwidget.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -21,18 +22,17 @@ class GraphPage extends StatelessWidget {
         title: const Text("Graph Page"),
       ),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20,),
-            GraphWidget(),
-            TickWidget(),
-            ModuloWidget(),
-          ],
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 20,),
+          GraphWidget(),
+          TickWidget(),
+          ModuloWidget(),
+          ListRadioWidget()
+        ],
 
-        ),
       ),
     );
   }

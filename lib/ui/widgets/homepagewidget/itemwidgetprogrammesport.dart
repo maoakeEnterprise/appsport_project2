@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:appsport_project/bloc/startprogrammebloc/startprogramme_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -82,6 +83,52 @@ class ItemWidgetTrainings extends StatelessWidget {
                     ),
                     onTap: (){
                       Navigator.pushNamed(context, "programmepage",arguments: {'id':id,'nom':nomProgramme});
+                    },
+                  ),
+                  InkWell(
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      padding: const EdgeInsets.only(top: 10),
+                      child: const Icon(
+                        Icons.maximize_rounded,
+                        color: Colors.red,
+                      ),
+                    ),
+                    onTap: (){
+                      showDialog(context: context,
+                          builder: (context) => SimpleDialog(
+                            shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+                            contentPadding: const EdgeInsets.all(20),
+                            title: Text('Programme à supprimer'),
+                            children: [
+                              const Text("Veux-tu vraiment supprimer ?"),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextButton(
+                                      onPressed: (){
+                                        var db = FirebaseFirestore.instance;
+                                        db.collection("Programme").doc(id).delete();
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Confirmer")
+                                  ),
+                                  const SizedBox(width: 40,),
+                                  TextButton(
+                                      onPressed: (){
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text("Annuler")
+                                  ),
+                                ],
+                              )
+                            ],
+                          ));
                     },
                   )
                 ],

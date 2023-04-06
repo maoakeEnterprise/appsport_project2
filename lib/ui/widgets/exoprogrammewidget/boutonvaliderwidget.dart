@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class BoutonValiderWidget extends StatelessWidget {
   String? cas;
   String? idProgramme;
-  String? idExerciceProgramme;
+  int? idExerciceProgramme;
   BoutonValiderWidget({Key? key,this.cas,this.idProgramme,this.idExerciceProgramme}) : super(key: key);
 
   @override
@@ -36,26 +36,33 @@ class BoutonValiderWidget extends StatelessWidget {
             ),
             onTap: () {
               if(cas == "ADD"){
-                print('ADD');
                 db
                     .collection('Programme')
                     .doc(idProgramme)
-                    .collection('Exercices Programme')
-                    .add({
-                  'id' : '',
-                  'nomExercice' : state.exerciceOption,
-                  'nomMuscle' : state.nomMuscle,
-                  'poids' : state.poids,
-                  'repetitions' : state.repetitions
-                }).then((value){
-                  db
-                      .collection('Programme')
-                      .doc(idProgramme)
-                      .collection('Exercices Programme')
-                      .doc(value.id)
-                      .update({
-                    'id' : value.id
-                  });
+                    .collection('Exercices Programme').get().then((element){
+                      int number = 0;
+                      int numberStock;
+                      for(var docSnapshot in element.docs){
+                        numberStock = int.parse(docSnapshot.id);
+                        if(number < numberStock){
+                          number = numberStock+1;
+                        }
+                      }
+                      var serie = state.serie?.toInt() ?? 1;
+                      for(var i=0; i <serie; i++){
+                        db
+                            .collection('Programme')
+                            .doc(idProgramme)
+                            .collection('Exercices Programme').doc('$number')
+                            .set({
+                          'id' : number,
+                          'nomExercice' : state.exerciceOption,
+                          'nomMuscle' : state.nomMuscle,
+                          'poids' : state.poids,
+                          'repetitions' : state.repetitions
+                        });
+                        number = number+1;
+                      }
                 });
               }
               else if(cas == "UPDATE"){
@@ -65,7 +72,7 @@ class BoutonValiderWidget extends StatelessWidget {
                       .collection('Programme')
                       .doc(idProgramme)
                       .collection('Exercices Programme')
-                      .doc(idExerciceProgramme).update({
+                      .doc('$idExerciceProgramme').update({
                     'nomMuscle' : state.nomMuscle,
                     'nomExercice' : state.exerciceOption,
                     'poids' : state.poids,
@@ -77,18 +84,12 @@ class BoutonValiderWidget extends StatelessWidget {
                       .collection('Programme')
                       .doc(idProgramme)
                       .collection('Exercices Programme')
-                      .doc(idExerciceProgramme).update({
+                      .doc('$idExerciceProgramme').update({
                     'poids' : state.poids,
                     'repetitions' : state.repetitions
                   });
                 }
               }
-              print("Id Programme $idProgramme");
-              print("Id Exercice Programme $idExerciceProgramme");
-              print("Nom Muscle : ${state.nomMuscle}");
-              print("Option exercice: ${state.exerciceOption}");
-              print("Poids: ${state.poids}");
-              print("Répétitions: ${state.repetitions}");
               Navigator.pop(context);
             },
           );

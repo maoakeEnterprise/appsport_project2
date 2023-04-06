@@ -13,7 +13,7 @@ class StartProgrammeBloc extends Bloc<StartProgrammeEvent, StartProgrammeState> 
     });
     on<BoxGetCheckedEvent>((event, emit) {
       // TODO: implement event handler
-      emit(GetCheckedBoxState(nomExercice: event.nomExercice));
+      emit(GetCheckedBoxState(nomExercice: event.nomExercice,id: event.id));
     });
     on<InitBoxGetCheckedEvent>((event, emit) {
       // TODO: implement event handler

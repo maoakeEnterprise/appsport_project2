@@ -16,6 +16,7 @@ class WidgetCheckbox extends StatelessWidget {
         .collection('Programme')
         .doc(idProgramme!)
         .collection('Exercices Programme')
+        .orderBy('id')
         .snapshots();
     return Expanded(
       child: Column(
@@ -39,6 +40,7 @@ class WidgetCheckbox extends StatelessWidget {
                   }
                   else{
                     return WidgetTile(
+                      id: data['id'],
                       nomExercice: data['nomExercice'],
                       poids: data['poids'],
                       repetition: data['repetitions'],

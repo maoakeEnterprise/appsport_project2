@@ -22,7 +22,7 @@ class GraphWidget extends StatelessWidget {
 
     return Center(
       child: Container(
-        margin: const EdgeInsets.all(20),
+        margin: const EdgeInsets.all(2),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Colors.deepOrange.withAlpha(30)

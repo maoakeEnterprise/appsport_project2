@@ -15,6 +15,7 @@ class ProgrammeExerciceFirebase extends StatelessWidget {
         .collection('Programme')
         .doc(id)
         .collection('Exercices Programme')
+        .orderBy('id')
         .snapshots();
     return Expanded(
       child: StreamBuilder(

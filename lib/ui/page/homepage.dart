@@ -103,7 +103,7 @@ class HomePage extends StatelessWidget {
               .add(prog)
               .then((value){
                 db.collection('Programme').doc(value.id).update({"id": value.id});
-                db.collection('Programme').doc(value.id).collection('Exercices Programme').add({'id':'0'});
+                db.collection('Programme').doc(value.id).collection('Exercices Programme').doc("0").set({'id':'0'});
                 String route = 'programmepage';
                 Navigator.pushNamed(context, route,arguments: {'id':value.id});
               });

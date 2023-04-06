@@ -9,8 +9,9 @@ class WidgetTile extends StatelessWidget {
   String? nomExercice;
   String? poids;
   String? repetition;
+  int? id;
 
-  WidgetTile({Key? key, this.nomExercice, this.poids, this.repetition})
+  WidgetTile({Key? key, this.nomExercice, this.poids, this.repetition,this.id})
       : super(key: key);
   final user = FirebaseAuth.instance.currentUser!;
 
@@ -24,7 +25,7 @@ class WidgetTile extends StatelessWidget {
           valueCheckBox = false;
         }
         if (state is GetCheckedBoxState) {
-          if (valueCheckBox == false && state.nomExercice == nomExercice) {
+          if (valueCheckBox == false && state.nomExercice == nomExercice && state.id == id) {
             valueCheckBox = true;
             cas = 1;
           }
@@ -55,7 +56,7 @@ class WidgetTile extends StatelessWidget {
                     onChanged: (value) {
                       context
                           .read<StartProgrammeBloc>()
-                          .add(BoxGetCheckedEvent(nomExercice: nomExercice));
+                          .add(BoxGetCheckedEvent(nomExercice: nomExercice,id: id));
                       sendToDataSuivie();
                       //Navigator.pop(context);
                     }),

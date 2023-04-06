@@ -1,4 +1,5 @@
 import 'package:appsport_project/ui/widgets/exoprogrammewidget/boutonvaliderwidget.dart';
+import 'package:appsport_project/ui/widgets/exoprogrammewidget/dropdownnumberseries.dart';
 import 'package:appsport_project/ui/widgets/exoprogrammewidget/listradioexercice.dart';
 import 'package:appsport_project/ui/widgets/exoprogrammewidget/textfieldpoidswidget.dart';
 import 'package:appsport_project/ui/widgets/exoprogrammewidget/textfieldrepetitionwidget.dart';
@@ -40,6 +41,7 @@ class ExoProgramme extends StatelessWidget {
         children: [
           TextFieldPoidsWidget(),
           TextFieldRepetitionWidget(),
+          DropDownNumberSeries(),
           ListRadioExercice(idUser: user.uid,),
           BoutonValiderWidget(cas: arguments['cas'],idProgramme: arguments['idProgramme'],idExerciceProgramme: arguments['id'],)
         ],

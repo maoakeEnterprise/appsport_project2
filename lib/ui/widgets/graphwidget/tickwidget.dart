@@ -7,6 +7,7 @@ class TickWidget extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         FilterChipWiget('jour'),
         FilterChipWiget('mois'),
@@ -17,11 +18,13 @@ class TickWidget extends StatelessWidget {
 
   Widget FilterChipWiget(nom){
     var onSelected = false;
-    return FilterChip(
-        label: Text(nom!),
-        selected: onSelected,
-        onSelected: (value){
+    return Expanded(
+      child: FilterChip(
+          label: Text(nom!),
+          selected: onSelected,
+          onSelected: (value){
 
-        });
+          }),
+    );
   }
 }

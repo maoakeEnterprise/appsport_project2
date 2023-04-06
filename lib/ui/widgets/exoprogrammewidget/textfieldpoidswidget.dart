@@ -31,16 +31,16 @@ class TextFieldPoidsWidget extends StatelessWidget {
               controller: controller,
               onChanged: (val) {
                 if(state.repetitions != null && state.repetitions != "" && state.exerciceOption != null){
-                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, repetitions: state.repetitions, exerciceOption: state.exerciceOption,nomMuscle: state.nomMuscle));
+                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, repetitions: state.repetitions, exerciceOption: state.exerciceOption,nomMuscle: state.nomMuscle,serie: state.serie));
                 }
                 else if(state.repetitions != null && state.repetitions != ""){
-                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, repetitions: state.repetitions));
+                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, repetitions: state.repetitions,serie: state.serie));
                 }
                 else if(state.exerciceOption != null){
-                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, exerciceOption: state.exerciceOption,nomMuscle: state.nomMuscle));
+                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, exerciceOption: state.exerciceOption,nomMuscle: state.nomMuscle,serie: state.serie));
                 }
                 else{
-                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val));
+                  context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val,serie: state.serie));
                 }
 
               },
@@ -54,16 +54,16 @@ class TextFieldPoidsWidget extends StatelessWidget {
             decoration: CustomThemes.textFieldStyle3,
             onChanged: (val) {
               if(state.repetitions != null && state.repetitions != "" && state.exerciceOption != null){
-              context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, repetitions: state.repetitions, exerciceOption: state.exerciceOption,nomMuscle: state.nomMuscle));
+              context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, repetitions: state.repetitions, exerciceOption: state.exerciceOption,nomMuscle: state.nomMuscle,serie: state.serie));
               }
               else if(state.repetitions != null && state.repetitions != ""){
-                context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, repetitions: state.repetitions));
+                context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, repetitions: state.repetitions,serie: state.serie));
               }
               else if(state.exerciceOption != null){
-                context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, exerciceOption: state.exerciceOption,nomMuscle: state.nomMuscle));
+                context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val, exerciceOption: state.exerciceOption,nomMuscle: state.nomMuscle,serie: state.serie));
               }
               else{
-                context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val));
+                context.read<CreateExoProgrammeBloc>().add(RadioListOptionEvent(poids: val,serie: state.serie));
               }
 
             },

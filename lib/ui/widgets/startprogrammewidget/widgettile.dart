@@ -19,16 +19,19 @@ class WidgetTile extends StatelessWidget {
   Widget build(BuildContext context) {
     bool valueCheckBox = false;
     int cas = 0;
+    List<int> listId = [];
     return BlocBuilder<StartProgrammeBloc, StartProgrammeState>(
       builder: (context, state) {
         if (state is InitCheckedBoxState) {
           valueCheckBox = false;
         }
         if (state is GetCheckedBoxState) {
-          if (valueCheckBox == false && state.nomExercice == nomExercice && state.id == id) {
-            valueCheckBox = true;
-            cas = 1;
-          }
+          state.listId.forEach((element) {
+            if(id! == element){
+              valueCheckBox = true;
+              cas = 1;
+            }
+          });
         }
         if (cas == 1) {
           return Container();
@@ -54,11 +57,12 @@ class WidgetTile extends StatelessWidget {
                     checkColor: Colors.white,
                     value: valueCheckBox,
                     onChanged: (value) {
+                      listId = state.listId;
+                      listId.add(id!);
                       context
                           .read<StartProgrammeBloc>()
-                          .add(BoxGetCheckedEvent(nomExercice: nomExercice,id: id));
+                          .add(BoxGetCheckedEvent(nomExercice: nomExercice,id: id,listId: listId));
                       sendToDataSuivie();
-                      //Navigator.pop(context);
                     }),
                 Expanded(
                   child: Container(

@@ -65,7 +65,7 @@ class ItemWidgetTrainings extends StatelessWidget {
                       ),
                     ),
                     onTap: (){
-                      context.read<StartProgrammeBloc>().add(InitBoxGetCheckedEvent());
+                      context.read<StartProgrammeBloc>().add(InitBoxGetCheckedEvent(listId: []));
                       Navigator.pushNamed(context, "startprogramme",arguments: {'idProgramme': id,'nom':nomProgramme});
                     },
                   ),
@@ -113,6 +113,7 @@ class ItemWidgetTrainings extends StatelessWidget {
                                   TextButton(
                                       onPressed: (){
                                         var db = FirebaseFirestore.instance;
+                                        print(id);
                                         db.collection("Programme").doc(id).delete();
                                         Navigator.of(context).pop();
                                       },

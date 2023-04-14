@@ -1,6 +1,6 @@
 class ChartData{
-  int? day;
+  DateTime? date;
   int? poids;
   String? nom_exercice;
-  ChartData({this.day, this.poids});
+  ChartData({this.date, this.poids});
 }

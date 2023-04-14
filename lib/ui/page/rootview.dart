@@ -3,6 +3,7 @@ import 'package:appsport_project/ui/page/authentificationpage.dart';
 import 'package:appsport_project/ui/page/exercicespage.dart';
 import 'package:appsport_project/ui/page/graphpage.dart';
 import 'package:appsport_project/ui/page/homepage.dart';
+import 'package:appsport_project/ui/page/nutritionpage.dart';
 import 'package:appsport_project/ui/page/settingspage.dart';
 import 'package:appsport_project/ui/page/startprogrammepage.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class RootView extends StatelessWidget {
           "programmepage": (context)=> CreateProgrammePage(),
           "exoprogramme": (context)=> ExoProgramme(),
           "startprogramme": (context)=> const StartProgrammePage(),
+          "nutritionProgramme": (context)=> const NutritionPage(),
         },
       ),
     );

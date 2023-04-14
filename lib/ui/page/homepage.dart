@@ -88,28 +88,45 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          final prog = Programme(
-            id: "",
-            idUser: user.uid,
-            nom: "Programme ?",
-          );
-          db
-              .collection("Programme")
-              .withConverter(
-              fromFirestore: Programme.fromFirestore,
-              toFirestore: (Programme prog, options) => prog.toFirestore())
-              .add(prog)
-              .then((value){
-                db.collection('Programme').doc(value.id).update({"id": value.id});
-                db.collection('Programme').doc(value.id).collection('Exercices Programme').doc("0").set({'id':'0'});
-                String route = 'programmepage';
-                Navigator.pushNamed(context, route,arguments: {'id':value.id});
-              });
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 30),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              heroTag: "btn2",
+              onPressed: () {
+                Navigator.pushNamed(context, "nutritionProgramme");
+              },
+              child: const Icon(Icons.accessibility),
+            ),
+            Expanded(child: Container()),
+            FloatingActionButton(
+              heroTag: "btn1",
+              onPressed: () {
+                final prog = Programme(
+                  id: "",
+                  idUser: user.uid,
+                  nom: "Programme ?",
+                );
+                db
+                    .collection("Programme")
+                    .withConverter(
+                    fromFirestore: Programme.fromFirestore,
+                    toFirestore: (Programme prog, options) => prog.toFirestore())
+                    .add(prog)
+                    .then((value){
+                  db.collection('Programme').doc(value.id).update({"id": value.id});
+                  db.collection('Programme').doc(value.id).collection('Exercices Programme').doc("0").set({'id':'0'});
+                  String route = 'programmepage';
+                  Navigator.pushNamed(context, route,arguments: {'id':value.id});
+                });
 
-        },
-        child: const Icon(Icons.add),
+              },
+              child: const Icon(Icons.add),
+            ),
+          ],
+        ),
       ),
     );
   }

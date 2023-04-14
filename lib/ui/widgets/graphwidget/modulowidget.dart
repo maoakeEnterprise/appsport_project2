@@ -11,7 +11,8 @@ class ModuloWidget extends StatelessWidget {
     return BlocBuilder<GraphPrgrammeBloc, GraphPrgrammeState>(
       builder: (context, state) {
         return Slider(
-          value: state.moduloValue ?? 0,
+          value: state.moduloValue ?? 1,
+          min: 1,
           max: 10,
           divisions: 10,
           label: getLabel(state.moduloValue),

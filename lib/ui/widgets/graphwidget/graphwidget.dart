@@ -15,8 +15,6 @@ class GraphWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     List<ChartData> chartData= [];
     var dataSuivie = db.collection('datasuivie').where("idUser", isEqualTo: user.uid).snapshots();
-    double? minimumX = 0;
-    double? maximumX = 0;
 
     return Center(
       child: BlocBuilder<GraphPrgrammeBloc, GraphPrgrammeState>(
@@ -33,7 +31,6 @@ class GraphWidget extends StatelessWidget {
                   if(snapshot.connectionState == ConnectionState.waiting){
                     return const CircularProgressIndicator();
                   }
-                  print("======");
                   return Container(
                     height: 1,
                     child: ListView(
@@ -41,16 +38,10 @@ class GraphWidget extends StatelessWidget {
                         Map<String, dynamic> data =
                         document.data()! as Map<String, dynamic>;
                         if(state.exercice == data['nomExercice']){
-                          chartData.add(ChartData(day: transformDate(data['annee'], data['mois'], data['jour']),poids: data['poids']));
+                          chartData.add(ChartData(date: DateTime(data['annee'],data['mois'],data['jour']),poids: data['poids']));
                           chartData.sort((a,b){
-                            return Comparable.compare(a.day!, b.day!);
+                            return Comparable.compare(a.date!, b.date!);
                           });
-                          print("===");
-                          chartData.forEach((element) {print("day: ${element.day} poids: ${element.poids}");});
-                          maximumX = chartData.last.day?.toDouble();
-                          minimumX = chartData.first.day?.toDouble();
-                          print('Maximum : $maximumX');
-                          print('Minimum : $minimumX');
                         }
                         return Container();
                       }).toList(),
@@ -68,11 +59,9 @@ class GraphWidget extends StatelessWidget {
                   borderWidth: 0,
                   borderColor: Colors.transparent,
                   plotAreaBorderWidth: 0,
-                  primaryXAxis: NumericAxis(
-                      minimum: minimumX,
-                      maximum: maximumX,
-                      isVisible: false,
-                      interval: 50
+                  primaryXAxis: DateTimeAxis(
+                    isVisible: true,
+                    interval: state.moduloValue,
                   ),
                   primaryYAxis: NumericAxis(
                     minimum: 0,
@@ -82,10 +71,10 @@ class GraphWidget extends StatelessWidget {
                     borderWidth: 0,
 
                   ),
-                  series: <ChartSeries<ChartData, int>>[
+                  series: <ChartSeries<ChartData, DateTime>>[
                     SplineAreaSeries(
                       dataSource: chartData,
-                      xValueMapper: (ChartData data, _) => data.day,
+                      xValueMapper: (ChartData data, _) => data.date,
                       yValueMapper: (ChartData data, _) => data.poids,
                       splineType: SplineType.natural,
                       gradient: LinearGradient(
@@ -106,7 +95,7 @@ class GraphWidget extends StatelessWidget {
                         isVisible: true,
                       ),
                       dataSource: chartData,
-                      xValueMapper: (ChartData data, _) => data.day,
+                      xValueMapper: (ChartData data, _) => data.date,
                       yValueMapper: (ChartData data, _) => data.poids,
                     ),
                   ],
